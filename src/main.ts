@@ -47,7 +47,8 @@ async function bootstrap() {
         maxAge: 1000 * 60 * 60 * 24,
         domain: configService.get('SESSION_COOKIE_DOMAIN'),
         path: '/',
-        httpOnly: false,
+        httpOnly: true,
+        sameSite: 'lax',
       },
     }),
   );
@@ -56,7 +57,7 @@ async function bootstrap() {
   app.use(passport.session());
 
   app.enableCors({
-    origin: ['http://localhost', 'http://127.0.0.1', 'https://dev.co-kkiri.com', 'https://co-kkiri.netlify.app/'],
+    origin: ['http://localhost', 'http://127.0.0.1', 'https://co-kkiri-api.com'],
     credentials: true,
   });
 
